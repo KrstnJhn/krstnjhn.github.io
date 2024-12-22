@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>New Year Countdown</title>
+<style>
+body {
+    font-family: sans-serif;
+    text-align: center;
+}
+
+#clockdiv {
+    font-family: sans-serif;
+    color: #fff;
+    display: inline-block;
+    font-weight: 100;
+    text-align: center;
+    font-size: 30px;
+}
+
+#clockdiv > div {
+    padding: 10px;
+    border-radius: 3px;
+    background: #00BF96;
+    display: inline-block;
+}
+
+#clockdiv div > span {
+    padding: 15px;
+    border-radius: 3px;
+    background: #008168;
+    display: inline-block;
+}
+
+.smalltext {
+    padding-top: 5px;
+    font-size: 16px;
+}
+</style>
+</head>
+<body>
+
+<div id="clockdiv">
+    <div>
+        <span class="days"></span>
+        <div class="smalltext">Days</div>
+    </div>
+    <div>
+        <span class="hours"></span>
+        <div class="smalltext">Hours</div>
+    </div>
+    <div>
+        <span class="minutes"></span>
+        <div class="smalltext">Minutes</div>
+    </div>
+    <div>
+        <span class="seconds"></span>
+        <div class="smalltext">Seconds</div>
+    </div>
+</div>
+
+<script>
+setInterval(function(){
+    var now = new Date();
+    var end = new Date(now.getFullYear() + 1, 0, 1); // Set end date to next year, January 1st
+
+    var timediff = end - now;
+
+    if (timediff <= 0) { 
+        // If it's the New Year
+        document.querySelector('.days').textContent = "00";
+        document.querySelector('.hours').textContent = "00";
+        document.querySelector('.minutes').textContent = "00";
+        document.querySelector('.seconds').textContent = "00";
+    } else {
+        var seconds = Math.floor( timediff / 1000 );
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+
+        hours = hours - (days * 24);
+        minutes = minutes - (hours * 60);
+        seconds = seconds - (minutes * 60);
+
+        // Add leading zeros for better display
+        days = String(days).padStart(2, '0');
+        hours = String(hours).padStart(2, '0');
+        minutes = String(minutes).padStart(2, '0');
+        seconds = String(seconds).padStart(2, '0');
+
+        document.querySelector('.days').textContent = days;
+        document.querySelector('.hours').textContent = hours;
+        document.querySelector('.minutes').textContent = minutes;
+        document.querySelector('.seconds').textContent = seconds;
+    }
+}, 1000);
+</script>
+
+</body>
+</html>

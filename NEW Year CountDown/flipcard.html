@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.flip-card {
+  background-image: linear-gradient(to right, #34db58, #ff0a0a);  /* Important for gradient effect */
+  width: 1350px;
+  height: 500px;
+  perspective: 1000px; /* For 3D effect */
+}
+
+.flip-card-inner {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 1s;
+  transform-style: preserve-3d;
+}
+
+.flip-card:hover .flip-card-inner {
+  transform: rotateY(180deg);
+}
+
+.flip-card-front, .flip-card-back {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  -webkit-backface-visibility: hidden; /* Prevent flickering */
+  backface-visibility: hidden;
+}
+
+.flip-card-front {
+  background-color: #3498db; /* Example gradient */
+  background-image: linear-gradient(to right, #3498db, #2ecc71); 
+}
+
+.flip-card-back {
+    background-image: linear-gradient(to right, #eca409, #eb00a4); 
+  color: white;
+  transform: rotateY(180deg);
+}
+</style>
+</head>
+<body>
+
+<h1>Flip Card with Gradient</h1>
+
+<div class="flip-card">
+  <div class="flip-card-inner">
+    <div class="flip-card-front">
+      <h2>Front Side</h2>
+    </div>
+    <div class="flip-card-back">
+      <h2>Back Side</h2>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>

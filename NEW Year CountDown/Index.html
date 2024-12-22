@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Year Countdown</title>
+
+    <style>
+        body {
+           background-color: #f24236;
+           width: 100%;
+           overflow: hidden;
+           font-family: sans-serif;
+       }
+       
+       #clock {
+           margin-top: 280px;
+           text-align: center;
+           font-size: 30px;
+           color: #fff;
+           font-family: sans-serif;
+       }
+       
+       #clock > div {
+           padding: 10px;
+           border-radius: 3px;
+           background: #00BF96;
+           display: inline-block;
+       }
+       
+       #clock div > span {
+           padding: 15px;
+           border-radius: 3px;
+           background: #008168;
+           display: inline-block;
+       }
+       
+       #smalltext {
+           padding-top: 5px;
+           font-size: 16px;
+       }
+    </style>
+</head>
+
+<body>
+    <div id="clock">
+        <div>
+            <span class="days"></span>
+            <div id="smalltext">Days</div>
+        </div>
+        <div>
+            <span class="hours"></span>
+            <div id="smalltext">Hours</div>
+        </div>
+        <div>
+            <span class="minutes"></span>
+            <div id="smalltext">Minutes</div>
+        </div>
+        <div>
+            <span class="seconds"></span>
+            <div id="smalltext">Seconds</div>
+        </div>
+    </div>
+
+<script>
+
+setInterval(function(){
+    var now = new Date();
+    var end = new Date(now.getFullYear() + 1, 0, 0); // Set end date to next year, January 1st at 00:00:00
+
+    var timediff = end - now;
+
+     if (timediff > 0) { // If there is time left
+        var seconds = Math.floor( timediff / 1000 );
+        var minutes = Math.floor(seconds / 60);
+        var hours = Math.floor(minutes / 60);
+        var days = Math.floor(hours / 24);
+
+        hours = hours - (days * 24);
+        minutes = minutes - (hours * 60);
+        seconds = seconds - (minutes * 60);
+
+        document.querySelector('.days').textContent = days;
+        document.querySelector('.hours').textContent = hours;
+        document.querySelector('.minutes').textContent = minutes;
+        document.querySelector('.seconds').textContent = seconds;
+    } else if (timediff <= 0) { // If it's already New Year
+        document.querySelector('#clock').innerHTML = "Happy New Year!"; 
+    } else {
+        document.querySelector('#clock').innerHTML = ""; 
+    }
+}, 1000);
+</script>
+
+</body>
+</html>
